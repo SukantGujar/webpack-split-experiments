@@ -1,0 +1,27 @@
+{
+  "name": "webpack-split-experiments",
+  "version": "1.0.0",
+  "description": "A series of unfortunate experiments with webpack split options",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "webpack",
+    "code-split",
+    "optimization"
+  ],
+  "author": "Sukant Gujar",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-core": "^6.22.1",
+    "babel-loader": "^6.2.10",
+    "babel-plugin-lodash": "^3.2.11",
+    "babel-preset-es2015": "^6.22.0",
+    "lodash-webpack-plugin": "^0.11.0",
+    "webpack": "^2.2.1"
+  },
+  "dependencies": {
+    "lodash": "^4.17.4"
+  }
+}
