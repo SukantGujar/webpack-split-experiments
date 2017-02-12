@@ -19,7 +19,7 @@ commonConfig = {
         index: './index.js',
     },
     output: {
-        filename: '[name].js',
+        filename: '1.[name].js',
         path: path.resolve(__dirname, 'dist')
     },
     context: path.resolve(__dirname, "src"),
@@ -43,7 +43,7 @@ multipleEntriesConfig = _.merge({}, commonConfig, {
         vendor: 'lodash'
     },
     output: {
-        filename: 'multipleEntries.[name].js'
+        filename: '2.multipleEntries.[name].js'
     },
     plugins: [
         new webpack.optimize.CommonsChunkPlugin({
@@ -56,7 +56,7 @@ cherryPickConfig = _.merge({}, commonConfig, {
         vendor: 'lodash/range'
     },
     output: {
-        filename: 'cherryPick.[name].js'
+        filename: '3.cherryPick.[name].js'
     },
     module: {
         rules: [
@@ -76,7 +76,7 @@ cherryPickConfig = _.merge({}, commonConfig, {
 }),
 implicitCommonVendorChunkConfig = _.merge({}, commonConfig, {
     output: {
-        filename: 'implicitCommonVendorChunk.[name].js'
+        filename: '4.implicitCommonVendorChunk.[name].js'
     },
     module: {
         rules: [
