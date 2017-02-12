@@ -23,5 +23,9 @@
   },
   "dependencies": {
     "lodash": "^4.17.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SukantGujar/webpack-split-experiments.git"
   }
 }
