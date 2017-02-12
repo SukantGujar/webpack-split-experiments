@@ -8,14 +8,19 @@ minified = function(config){
     config.plugins.push(
         new webpack.optimize.UglifyJsPlugin()
     );
-
-    config.output.filename = "min." + config.output.filename;
+    var fileparts = _.split(config.output.filename, '.');
+    fileparts = _.concat(_.initial(fileparts), "min", _.last(fileparts));
+    config.output.filename = _.join(fileparts, '.');
 
     return config;
 },
 commonConfig = {
     entry: {
         index: './index.js',
+    },
+    output: {
+        filename: '[name].js',
+        path: path.resolve(__dirname, 'dist')
     },
     context: path.resolve(__dirname, "src"),
     module: {
@@ -38,8 +43,7 @@ multipleEntriesConfig = _.merge({}, commonConfig, {
         vendor: 'lodash'
     },
     output: {
-        filename: 'multipleEntries.[name].js',
-        path: path.resolve(__dirname, 'dist')
+        filename: 'multipleEntries.[name].js'
     },
     plugins: [
         new webpack.optimize.CommonsChunkPlugin({
@@ -52,8 +56,7 @@ cherryPickConfig = _.merge({}, commonConfig, {
         vendor: 'lodash/range'
     },
     output: {
-        filename: 'cherryPick.[name].js',
-        path: path.resolve(__dirname, 'dist')
+        filename: 'cherryPick.[name].js'
     },
     module: {
         rules: [
@@ -73,8 +76,7 @@ cherryPickConfig = _.merge({}, commonConfig, {
 }),
 implicitCommonVendorChunkConfig = _.merge({}, commonConfig, {
     output: {
-        filename: 'implicitCommonVendorChunk.[name].js',
-        path: path.resolve(__dirname, 'dist')
+        filename: 'implicitCommonVendorChunk.[name].js'
     },
     module: {
         rules: [
@@ -95,6 +97,6 @@ implicitCommonVendorChunkConfig = _.merge({}, commonConfig, {
         })
     ]
 }),
-config = [multipleEntriesConfig, minified(multipleEntriesConfig), cherryPickConfig, minified(cherryPickConfig), implicitCommonVendorChunkConfig, minified(implicitCommonVendorChunkConfig)];
+config = [commonConfig, minified(commonConfig), multipleEntriesConfig, minified(multipleEntriesConfig), cherryPickConfig, minified(cherryPickConfig), implicitCommonVendorChunkConfig, minified(implicitCommonVendorChunkConfig)];
 
 module.exports = config;
